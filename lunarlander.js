@@ -6,14 +6,15 @@ let clouds = [];
 background(135,206,235);
 
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < 6; i++) {
     const cloud = {
         x: Math.floor(Math.random() * width),
         y: Math.floor(Math.random() * 350),
-        speed: Math.random() * 2 + 1,
+        speed: Math.random() * 1  ,
         size: Math.random() * 100 + 50,
         alpha: Math.random(),  
     };
+    
     clouds.push(cloud); 
 }
 
@@ -22,7 +23,7 @@ function draw() {
     
 
     for (let cloud of clouds) {
-        fill(255, 255, 255, Math.abs(Math.sin(cloud.alpha)) * 5);
+        fill(255, 255, 255, Math.abs(Math.sin(cloud.alpha)) * 4 );
         
         ellipse(cloud.x, cloud.y, cloud.size * 0.7, cloud.size * 0.5);
         ellipse(cloud.x - cloud.size * 0.4, cloud.y, cloud.size * 0.6, cloud.size * 0.2);
