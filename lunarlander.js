@@ -27,6 +27,10 @@ cloud(c + 140, 90);
 cloud(c + 200, 300);
 cloud(c - 190, 250);
 c = c + 0.5;
+if (c > width) {
+    c = 0; 
+}
+
 
 // grass 
 fill(0, 128, 0);
