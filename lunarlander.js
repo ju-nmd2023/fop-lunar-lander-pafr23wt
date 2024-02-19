@@ -19,8 +19,9 @@ function cloud(c, l) {
 }
 
 function cloudfly(c, l) {
-    fill(255,255,255,);
-    stroke(255,255,255);
+    fill(255,255,255,250);
+    stroke(0,0,0);
+    strokeWeight(0.3);
     ellipse(c + 100, l + 10, 70, 60);
     ellipse(c + 70, l + 10, 60, 40);
     ellipse(c + 140, l + 15, 50, 40);
@@ -114,15 +115,15 @@ if (keyCode == DOWN_ARROW) {
 y = y +10;}
 else if (keyCode == UP_ARROW) {
     y -= 3;
-    cloud(x - 130, y - 70); 
+    cloudfly(x - 130, y - 70); 
 }
 else if (keyCode == RIGHT_ARROW) {
     x += 3;
-    cloud2(x - 130, y - 70); 
+    cloudfly(x - 130, y - 70); 
 }
 else if (keyCode == LEFT_ARROW) {
     x -= 3;
-    cloud(x - 130, y - 70); 
+    cloudfly(x - 130, y - 70); 
 }
 }
 
