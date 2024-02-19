@@ -1,6 +1,10 @@
 let x = 300;
 let y = 250;
+let z = 300;
+let a = 250;
+
 let clouds = [];
+
 
 // background
 background(135,206,235);
@@ -25,6 +29,7 @@ function draw() {
     for (let cloud of clouds) {
         fill(255, 255, 255, Math.abs(Math.sin(cloud.alpha)) * 4 );
         
+        
         ellipse(cloud.x, cloud.y, cloud.size * 0.7, cloud.size * 0.5);
         ellipse(cloud.x - cloud.size * 0.4, cloud.y, cloud.size * 0.6, cloud.size * 0.2);
         ellipse(cloud.x + cloud.size * 0.4, cloud.y, cloud.size * 0.6, cloud.size * 0.4);
@@ -45,18 +50,25 @@ rect(0, 420, 600, 200);
 
 // mud
 ellipse();
-stroke(43, 29, 20);
+stroke(101, 67, 37);
 fill(88, 57, 39);
-ellipse(280, 460, 350, 70);
+ellipse(z-20, a+210, 350, 70);
 
 // stones
+stroke(85,85,85);
 fill(101, 100, 101);
-ellipse(115, 450, 40, 30);
-ellipse(100, 460, 35, 27);
-ellipse(110, 470, 30, 35);
-ellipse(130, 480, 32, 30);
-ellipse(450, 455, 45,35);
-ellipse(450, 470, 40,30);
+ellipse(z-185, a+200, 40, 30);
+ellipse(z-200, a+210, 35, 27);
+ellipse(z-190, a+220, 30, 35);
+ellipse(z-170, a+230, 32, 30);
+ellipse(z+150, a+205, 45,35);
+ellipse(z+150, a+220, 40,30);
+
+z = z + 1;
+if (z >= 450 || z <= 150) {
+    1 *= -1;
+}
+
 
 //tail 
 push();
