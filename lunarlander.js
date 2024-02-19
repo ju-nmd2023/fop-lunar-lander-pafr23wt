@@ -2,49 +2,31 @@ let x = 300;
 let y = 250;
 let z = 300;
 let a = 250;
+let c = 200;
+let l = 200;
 let speed = 2;
 
+//clouds
 
-let clouds = [];
-
-
-// background
-background(135,206,235);
-
-
-for (let i = 0; i < 6; i++) {
-    const cloud = {
-        x: Math.floor(Math.random() * width),
-        y: Math.floor(Math.random() * 350),
-        speed: Math.random() * 1  ,
-        size: Math.random() * 100 + 50,
-        alpha: Math.random(),  
-    };
-    
-    clouds.push(cloud); 
+function cloud(c, l) {
+    fill(255,255,255, 100);
+    ellipse(c + 100, l + 10, 70, 60);
+    ellipse(c + 70, l + 10, 60, 40);
+    ellipse(c + 140, l + 15, 50, 40);
 }
 
+// background
+
 function draw() {
-    noStroke();    
-    
-
-    for (let cloud of clouds) {
-        fill(255, 255, 255, Math.abs(Math.sin(cloud.alpha)) * 4 );
-        
-        
-        ellipse(cloud.x, cloud.y, cloud.size * 0.7, cloud.size * 0.5);
-        ellipse(cloud.x - cloud.size * 0.4, cloud.y, cloud.size * 0.6, cloud.size * 0.2);
-        ellipse(cloud.x + cloud.size * 0.4, cloud.y, cloud.size * 0.6, cloud.size * 0.4);
-
-        cloud.alpha = cloud.alpha + 0.5;
-
-        cloud.x += cloud.speed * 0.1; 
-        
-        if (cloud.x > width + cloud.size * 0.7) {
-            cloud.x = -cloud.size * 0.7; 
-        }
-    }
-
+background(135,206,235);
+noStroke();    
+cloud(c - 170, 40);
+cloud(c + 20, 200);
+cloud(c +100, 70);
+cloud(c + 140, 90);
+cloud(c + 200, 300);
+cloud(c - 190, 250);
+c = c + 0.5;
 
 // grass 
 fill(0, 128, 0);
