@@ -11,7 +11,16 @@ let rotationAngle = 10;
 //clouds
 
 function cloud(c, l) {
-    fill(255,255,255, 100);
+    fill(255,255,255,100);
+    stroke(255,255,255,10);
+    ellipse(c + 100, l + 10, 70, 60);
+    ellipse(c + 70, l + 10, 60, 40);
+    ellipse(c + 140, l + 15, 50, 40);
+}
+
+function cloudfly(c, l) {
+    fill(255,255,255,);
+    stroke(255,255,255);
     ellipse(c + 100, l + 10, 70, 60);
     ellipse(c + 70, l + 10, 60, 40);
     ellipse(c + 140, l + 15, 50, 40);
@@ -59,39 +68,14 @@ rect(x-78, y-140, 22, 32, 20);
 rect(x-5, y-140, 22, 32, 20);
 }
 
-
-// background
-
 function draw() {
+//background
 background(135,206,235);
-noStroke();    
-cloud(c - 170, 40);
-cloud(c + 20, 200);
-cloud(c +100, 70);
-cloud(c + 140, 90);
-cloud(c + 200, 300);
-cloud(c - 190, 250);
-c = c + 0.5;
-if (c > 750) {
-    c = -250; 
-}
 
-pig(x,y);
-if (keyCode == DOWN_ARROW) {
-y = y +3;}
-else if (keyCode == UP_ARROW) {
-    y -= 3;
-}
-else if (keyCode === RIGHT_ARROW) {
-    x += 3;
-}
-else if (keyCode === LEFT_ARROW) {
-    x += 3;
-}
 // grass 
+noStroke();
 fill(0, 128, 0);
 rect(0, 420, 600, 200);
-
 // mud
 ellipse();
 stroke(101, 67, 37);
@@ -111,6 +95,34 @@ ellipse(z+150, a+220, 40,30);
 z = z + speed;
 if (z >= 370 || z <= 270) {
     speed *= -1;
+}
+
+noStroke();    
+cloud(c - 170, 40);
+cloud(c + 20, 200);
+cloud(c +100, 70);
+cloud(c + 140, 90);
+cloud(c + 200, 300);
+cloud(c - 190, 250);
+c = c + 0.5;
+if (c > 750) {
+    c = -250; 
+}
+
+pig(x,y);
+if (keyCode == DOWN_ARROW) {
+y = y +10;}
+else if (keyCode == UP_ARROW) {
+    y -= 3;
+    cloud(x - 130, y - 70); 
+}
+else if (keyCode == RIGHT_ARROW) {
+    x += 3;
+    cloud2(x - 130, y - 70); 
+}
+else if (keyCode == LEFT_ARROW) {
+    x -= 3;
+    cloud(x - 130, y - 70); 
 }
 }
 
