@@ -2,6 +2,8 @@ let x = 300;
 let y = 250;
 let z = 300;
 let a = 250;
+let speed = 2;
+
 
 let clouds = [];
 
@@ -64,9 +66,9 @@ ellipse(z-170, a+230, 32, 30);
 ellipse(z+150, a+205, 45,35);
 ellipse(z+150, a+220, 40,30);
 
-z = z + 1;
-if (z >= 450 || z <= 150) {
-    1 *= -1;
+z = z + speed;
+if (z >= 370 || z <= 270) {
+    speed *= -1;
 }
 
 
