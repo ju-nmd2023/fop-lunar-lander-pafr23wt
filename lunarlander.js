@@ -5,11 +5,8 @@ let a = 250;
 let c = 200;
 let l = 200;
 let speed = 2;
-let rotationAngle = 10;
-
 
 //clouds
-
 function cloud(c, l) {
     fill(255,255,255,100);
     stroke(255,255,255,10);
@@ -124,6 +121,9 @@ else if (keyCode == RIGHT_ARROW) {
 else if (keyCode == LEFT_ARROW) {
     x -= 3;
     cloudfly(x - 130, y - 70); 
+}
+else if (keyCode == 32) {
+
 }
 }
 
