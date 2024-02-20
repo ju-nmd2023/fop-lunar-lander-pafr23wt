@@ -6,6 +6,8 @@ let c = 200;
 let l = 200;
 let f = 300;
 let r = 250;
+let b = 300;
+let d = 250;
 let speed = 5;
 let s = 1.0;
 let gameStarted = false; 
@@ -35,6 +37,55 @@ function mud (z,a) {
     fill(88, 57, 39);
     ellipse(z-20, a+210);
     }
+
+    function happypig(b, d, s) {
+        //tail 
+        fill(255, 182, 193);
+        stroke(255, 105, 180);
+        strokeWeight(2);
+        ellipse(b-95 * s, d-130 * s, 20 * s);
+        
+        // body for pig
+        fill(255, 182, 193);
+        stroke(255, 105, 180);
+        strokeWeight(2);
+        ellipse(b-30 * s, d-120 * s, 120 * s, 80 * s);
+        ellipse(b-30 * s, d-180 * s, 75 * s, 80 * s);
+        
+       // eyes for pig
+       fill(255,255,255);
+       ellipse(b-20 * s, d-190 * s, 20 * s);
+       ellipse(b-40 * s, d-190 * s, 20 * s);
+       
+       // eyeballs  
+       fill(0,0,0);
+       stroke(51,171,249);
+       strokeWeight(2);
+       ellipse(b-20 * s, d-187 * s, 10 * s);
+       ellipse(b-40 * s, d-187 * s, 10 * s);
+    
+       //mouth
+       noFill();
+       stroke(255, 105, 180);
+       strokeWeight(2);
+       arc(b - 30 * s, d - 165 * s, 40 * s, 30 * s, 0.1, PI - 0.1); // Adjusted y-coordinate
+       
+        // legs and arms
+        fill(255, 182, 193);
+        stroke(255, 105, 180);
+        strokeWeight(2);
+        ellipse(b-30 * s, d-170 * s, 35 * s, 25 * s);
+        ellipse(b-35 * s, d-170 * s, 2 * s, 5 * s);
+        ellipse(b-25 * s, d-170 * s, 2 * s, 5 * s);
+        rect(b-71 * s, d-215 * s, 20 * s, 30 * s, 5 * s);
+        rect(b-11 * s, d-215 * s, 20 * s, 30 * s, 5 * s);
+        rect(b-20 * s, d-95 * s, 32 * s, 22 * s, 5 * s);
+        rect(b-70 * s, d-95 * s, 32 * s, 22 * s, 5 * s);
+        rect(b-78 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
+        rect(b-78 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
+        rect(b-5 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
+        }
+    
     
 function pig(x, y, s) {
     //tail 
@@ -44,7 +95,7 @@ function pig(x, y, s) {
     ellipse(x-95 * s, y-130 * s, 20 * s);
     
     // body for pig
-    fill(255, 182, 193);
+    fill(255, 182, 193); 
     stroke(255, 105, 180);
     strokeWeight(2);
     ellipse(x-30 * s, y-120 * s, 120 * s, 80 * s);
@@ -77,43 +128,44 @@ function pig(x, y, s) {
     rect(x-78 * s, y-140 * s, 22 * s, 32 * s, 20 * s);
     rect(x-5 * s, y-140 * s, 22 * s, 32 * s, 20 * s);
     }
+    
 
-    function deadpig(x, y, s) {
+    function deadpig(b, d, s) {
         //tail 
         fill(255, 182, 193);
         stroke(255, 105, 180);
         strokeWeight(2);
-        ellipse(x-95 * s, y-130 * s, 20 * s);
+        ellipse(b-95 * s, d-130 * s, 20 * s);
         
         // body for pig
         fill(255, 182, 193);
         stroke(255, 105, 180);
         strokeWeight(2);
-        ellipse(x-30 * s, y-120 * s, 120 * s, 80 * s);
-        ellipse(x-30 * s, y-180 * s, 75 * s, 80 * s);
+        ellipse(b-30 * s, d-120 * s, 120 * s, 80 * s);
+        ellipse(b-30 * s, d-180 * s, 75 * s, 80 * s);
         
         
         // dead eyes  
         stroke(0, 0, 0); 
-        line(x - 25 * s, y - 195 * s, x - 15 * s, y - 185 * s); 
-        line(x - 25 * s, y - 185 * s, x - 15 * s, y - 195 * s); 
-        line(x - 45 * s, y - 195 * s, x - 35 * s, y - 185 * s); 
-        line(x - 45 * s, y - 185 * s, x - 35 * s, y - 195 * s); 
+        line(b - 25 * s, d - 195 * s, b - 15 * s, d - 185 * s); 
+        line(b - 25 * s, d - 185 * s, b - 15 * s, d - 195 * s); 
+        line(b - 45 * s, d - 195 * s, b - 35 * s, d - 185 * s); 
+        line(b - 45 * s, d - 185 * s, b - 35 * s, d - 195 * s); 
     
         // legs and arms
         fill(255, 182, 193);
         stroke(255, 105, 180);
         strokeWeight(2);
-        ellipse(x-30 * s, y-170 * s, 35 * s, 25 * s);
-        ellipse(x-35 * s, y-170 * s, 2 * s, 5 * s);
-        ellipse(x-25 * s, y-170 * s, 2 * s, 5 * s);
-        rect(x-71 * s, y-215 * s, 20 * s, 30 * s, 5 * s);
-        rect(x-11 * s, y-215 * s, 20 * s, 30 * s, 5 * s);
-        rect(x-20 * s, y-95 * s, 32 * s, 22 * s, 5 * s);
-        rect(x-70 * s, y-95 * s, 32 * s, 22 * s, 5 * s);
-        rect(x-78 * s, y-140 * s, 22 * s, 32 * s, 20 * s);
-        rect(x-78 * s, y-140 * s, 22 * s, 32 * s, 20 * s);
-        rect(x-5 * s, y-140 * s, 22 * s, 32 * s, 20 * s);
+        ellipse(b-30 * s, d-170 * s, 35 * s, 25 * s);
+        ellipse(b-35 * s, d-170 * s, 2 * s, 5 * s);
+        ellipse(b-25 * s, d-170 * s, 2 * s, 5 * s);
+        rect(b-71 * s, d-215 * s, 20 * s, 30 * s, 5 * s);
+        rect(b-11 * s, d-215 * s, 20 * s, 30 * s, 5 * s);
+        rect(b-20 * s, d-95 * s, 32 * s, 22 * s, 5 * s);
+        rect(b-70 * s, d-95 * s, 32 * s, 22 * s, 5 * s);
+        rect(b-78 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
+        rect(b-78 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
+        rect(b-5 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
         }
 
     function isPigTouchingMud() {
@@ -197,6 +249,7 @@ function draw() {
             speed *= -1;
         }
 
+    
         // clouds
         noStroke();    
         cloud(c - 170, 40);
@@ -228,12 +281,7 @@ function draw() {
             x -= 3;
             cloudfly(x - 130, y - 70); 
         }
-
-        // Draw flowers
-        flower(f, r);
-        flower(f + 20, r + 20);
-        flower(f + 530, r - 10);
-
+        
     } else if (gameStarted) {
 
         // Change background
@@ -263,17 +311,17 @@ function draw() {
         cloud(c + 200, 300);
         cloud(c - 190, 250);
 
-        // Movement for clouds
-        c = c + 0.5;
-        if (c > 750) {
-            c = -250; 
-        }
-
+           // Movement for clouds
+           c = c + 0.5;
+           if (c > 750) {
+               c = -250; 
+           }
+   
         // Draw pig
         pig(x, y, s);
 
-        // Movement for pig
-        if (keyCode == DOWN_ARROW) {
+          // Movement for pig
+          if (keyCode == DOWN_ARROW) {
             y = y +10;
         } else if (keyCode == UP_ARROW) {
             y -= 3;
@@ -285,8 +333,13 @@ function draw() {
             x -= 3;
             cloudfly(x - 130, y - 70); 
         }
+
         if (keyCode == 32 && isPigTouchingMud()) {
             background(135,206,235);
+            noStroke();
+            fill(0,0,0);
+            textSize(20);
+            text("Congratiolations, YOU WON!", f - 140, r - 100);
             noStroke();
             fill(0, 128, 0);
             rect(0, 350, 600, 300);
@@ -295,9 +348,11 @@ function draw() {
             cloud(c +100, 70);
             cloud(c + 140, 90);
             cloud(c + 200, 300);
-            cloud(c - 190, 250);
-            deadpig(x + 30, y + 250 , s * 1.2);
-            tryagainbutton(f - 100, r - 100, 200, 60);
+            cloud(c - 190, 250); 
+            noStroke();
+            fill(88, 57, 39);
+            ellipse(b, d+140, 400, 70);
+            happypig(b + 30, d + 200, s * 1.2);
             }
 
         // Draw flowers
@@ -326,5 +381,4 @@ function draw() {
         pig(width / 2, y + 320, Math.min(2, 2.8 - (mouseY / height) * 2));
         button(f - 100, r - 100, 200, 60);
     }
-
 }
