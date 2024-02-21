@@ -12,6 +12,9 @@ let speed = 5;
 let s = 1.0;
 let gameStarted = false; 
 let stars = [];
+let velocity = 0.5;
+const acceleretion = 0.1;
+let pigY = 100;
 
 //clouds in background function
 function cloud(c, l) {
@@ -169,9 +172,6 @@ function pig(x, y, s) {
         rect(b-5 * s, d-140 * s, 22 * s, 32 * s, 20 * s);
         }
 
-    function isPigTouchingMud() {
-        return x - 30 >= z - 175 && x - 30 <= z + 175;
-    }
 
 //flowers on grass function
 function flower (x,y) {
@@ -253,6 +253,8 @@ function draw() {
         mouseY < r - 100 + 60) {
         
         gameStarted = true;
+        pigY = pigY + velocity;
+        velocity = velocity + acceleretion;
         
         // background
         background(135,206,235);
@@ -296,6 +298,7 @@ function draw() {
             y = y +10;
         } else if (keyCode == UP_ARROW) {
             y -= 3;
+            y -= velocity; 
             cloudfly(x - 130, y - 70); 
         } else if (keyCode == RIGHT_ARROW) {
             x += 3;
@@ -306,6 +309,13 @@ function draw() {
         }
         
     } else if (gameStarted) {
+
+        if (keyIsDown( UP_ARROW)) {
+            y -= 3;
+            velocity -= 0.5; 
+            y -= velocity; 
+            cloudfly(x - 130, y - 70);
+        }
 
         // Change background
         background(135,206,235);
@@ -348,7 +358,6 @@ function draw() {
             y = y +10;
         } else if (keyCode == UP_ARROW) {
             y -= 3;
-            y -= velocity; 
             cloudfly(x - 130, y - 70); 
         } else if (keyCode == RIGHT_ARROW) {
             x += 3;
@@ -357,18 +366,9 @@ function draw() {
             x -= 3;
             cloudfly(x - 130, y - 70); 
         }
-    } else if (gameStarted) {
-
-        if (keyIsDown( UP_ARROW)) {
-            y -= 3;
-            velocity -= 0.5; 
-            y -= velocity; 
-            cloudfly(x - 130, y - 70);
-        }
-
 
         //YOU WIN page
-        if (keyCode === 32 && isPigTouchingMud()) {
+        if (keyCode === 32 && if(y > 440 && x > z - 175 or z + 175)) {
             background(202, 217, 232);
             noStroke();
              for (let star of stars) {
@@ -428,5 +428,4 @@ function draw() {
     }
 }
 
- //You loss page
  

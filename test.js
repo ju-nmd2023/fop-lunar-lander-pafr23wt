@@ -13,6 +13,7 @@ let s = 1.0;
 let gameStarted = false; 
 let stars = [];
 
+
 //clouds in background function
 function cloud(c, l) {
     fill(255,255,255,100);
@@ -227,176 +228,31 @@ for (let i = 0; i < 1000; i++) {
         y: Math.floor(Math.random() * height),
         snow: Math.random() * 1,
         alpha: Math.random(),
-        color: getRandomColor(),
     };
     stars.push(star);
 }
-//chat GPT
-function getRandomColor() {
-    const randomValue = Math.random();
-    if (randomValue < 0.33) {
-        return color(0, 255, 0); // Green
-    } else if (randomValue < 0.66) {
-        return color(255, 255, 0); 
-    } else {
-        return color(255, 105, 180); 
-    }
-}
-//chat GPT
 
 
 function draw() {
-    if (!gameStarted && mouseIsPressed && 
-        mouseX > f - 100 &&
-        mouseX < f - 100 + 200 &&
-        mouseY > r - 100 &&
-        mouseY < r - 100 + 60) {
-        
-        gameStarted = true;
-        
-        // background
-        background(135,206,235);
-
-        // grass
-        noStroke();
-        fill(0, 128, 0);
-        rect(0, 420, 600, 200);
-
-        // mud
-        fill(88, 57, 39);
-        ellipse(z-20, a+230, 350, 70);
-
-        // Movement for mud
-        z = z + speed;
-        if (z >= 370 || z <= 270) {
-            speed *= -1;
-        }
-
-    
-        // clouds
-        noStroke();    
-        cloud(c - 170, 40);
-        cloud(c + 20, 200);
-        cloud(c +100, 70);
-        cloud(c + 140, 90);
-        cloud(c + 200, 300);
-        cloud(c - 190, 250);
-
-        // Movement for clouds
-        c = c + 0.5;
-        if (c > 750) {
-            c = -250; 
-        }
-
-        // pig
-        pig(x, y, s);
-
-        // Movement for pig
-        if (keyCode == DOWN_ARROW) {
-            y = y +10;
-        } else if (keyCode == UP_ARROW) {
-            y -= 3;
-            cloudfly(x - 130, y - 70); 
-        } else if (keyCode == RIGHT_ARROW) {
-            x += 3;
-            cloudfly(x - 130, y - 70); 
-        } else if (keyCode == LEFT_ARROW) {
-            x -= 3;
-            cloudfly(x - 130, y - 70); 
-        }
-        
-    } else if (gameStarted) {
-
-        // Change background
-        background(135,206,235);
-
-        // Draw grass
-        noStroke();
-        fill(0, 128, 0);
-        rect(0, 420, 600, 200);
-
-        // Draw mud
-        fill(88, 57, 39);
-        ellipse(z-20, a+210, 200, 40);
-
-        // Movement for mud
-        z = z + speed;
-        if (z >= 440 || z <= 180) {
-            speed *= -1;
-        }
-
-        // Draw clouds
-        noStroke();    
-        cloud(c - 170, 40);
-        cloud(c + 20, 200);
-        cloud(c +100, 70);
-        cloud(c + 140, 90);
-        cloud(c + 200, 300);
-        cloud(c - 190, 250);
-
-           // Movement for clouds
-           c = c + 0.5;
-           if (c > 750) {
-               c = -250; 
-           }
-   
-        // Draw pig
-        pig(x, y, s);
-
-          // Movement for pig
-          if (keyCode == DOWN_ARROW) {
-            y = y +10;
-        } else if (keyCode == UP_ARROW) {
-            y -= 3;
-            y -= velocity; 
-            cloudfly(x - 130, y - 70); 
-        } else if (keyCode == RIGHT_ARROW) {
-            x += 3;
-            cloudfly(x - 130, y - 70); 
-        } else if (keyCode == LEFT_ARROW) {
-            x -= 3;
-            cloudfly(x - 130, y - 70); 
-        }
-    } else if (gameStarted) {
-
-        if (keyIsDown( UP_ARROW)) {
-            y -= 3;
-            velocity -= 0.5; 
-            y -= velocity; 
-            cloudfly(x - 130, y - 70);
-        }
-
-
-        //YOU WIN page
-        if (keyCode === 32 && isPigTouchingMud()) {
-            background(202, 217, 232);
+            background(135,206,235);
             noStroke();
-             for (let star of stars) {
-                fill(star.color.levels[0], star.color.levels[1], star.color.levels[2], Math.abs(Math.sin(star.alpha)) * 255);
-                ellipse(star.x, star.y, 6, 5);
-                star.alpha = star.alpha + 0.05;
-                star.y += star.snow;
-                if (star.y > height) {
-                    star.y = 0;
-                }
-            }       noStroke();
-                    fill(0,0,0);
-                    textSize(20);
-                    text("Congratulations, YOU WON!", f - 140, r - 100);
-                    noStroke();
-                    fill(0, 128, 0);
-                    rect(0, 350, 600, 300);
-                    cloud(c - 170, 40);
-                    cloud(c + 20, 200);
-                    cloud(c +100, 70);
-                    cloud(c + 140, 90);
-                    cloud(c + 200, 300);
-                    cloud(c - 190, 250); 
-                    noStroke();
-                    fill(88, 57, 39);
-                    ellipse(b, d+140, 400, 70);
-                    happypig(b + 30, d + 200, s * 1.2);
-                    }
+            fill(0,0,0);
+            textSize(20);
+            text("Congratulations, YOU WON!", f - 140, r - 100);
+            noStroke();
+            fill(0, 128, 0);
+            rect(0, 350, 600, 300);
+            cloud(c - 170, 40);
+            cloud(c + 20, 200);
+            cloud(c +100, 70);
+            cloud(c + 140, 90);
+            cloud(c + 200, 300);
+            cloud(c - 190, 250); 
+            noStroke();
+            fill(88, 57, 39);
+            ellipse(b, d+140, 400, 70);
+            happypig(b + 30, d + 200, s * 1.2);
+            }
 
         // Draw flowers
         
@@ -404,29 +260,12 @@ function draw() {
         flower(f + 20, r + 20);
         flower(f + 530, r - 10);
 
-        //Start Game page
-    } else {
-        background(135,206,235);
-        noStroke();
-        fill(0, 128, 0);
-        rect(0, 350, 600, 300);
-        cloud(c - 170, 40);
-        cloud(c + 20, 200);
-        cloud(c +100, 70);
-        cloud(c + 140, 90);
-        cloud(c + 200, 300);
-        cloud(c - 190, 250);
-        flower(f, r);
-        flower(f + 20, r + 20); 
-        flower(f + 530, r - 10);
-        flower(f + 450, r + 10);
-        flower(f + 300, r - 15);
-        flower(f + 100, r - 15);
-        flower(f + 190, r + 30);
-        pig(width / 2, y + 320, Math.min(2, 2.8 - (mouseY / height) * 2));
-        button(f - 100, r - 100, 200, 60);
-    }
-}
-
- //You loss page
- 
+        for (let star of stars) {
+            fill(255, 255, 255, Math.abs(Math.sin(star.alpha)) * 255);
+            ellipse(star.x, star.y, 6, 5);
+            star.alpha = star.alpha + 0.05;
+            star.y += star.snow;
+            if (star.y > height) {
+                star.y = 0;
+            }
+        }
