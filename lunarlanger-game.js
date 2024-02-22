@@ -236,7 +236,7 @@ function losepage() {
     background(135, 206, 235);
     noStroke();
     fill(0, 128, 0);
-    rect(0, 350, 600, 300);
+    rect(0, 400, 600, 600);
     cloud(c - 170, 40);
     cloud(c + 20, 200);
     cloud(c + 100, 70);
@@ -271,6 +271,17 @@ function getRandomColor() {
 }
 //chat GPT
 
+function keyPressed() {
+  // Check if the space key is pressed
+  if (keyCode === 32) {
+    // Reset game state
+    gameStarted = false;
+    x = 300;
+    y = 250;
+    speed = 1;
+  }
+}
+
 //DRAW FUNCTIONS
 function draw() {
   if (
@@ -290,7 +301,7 @@ function draw() {
     // Draw grass
     noStroke();
     fill(0, 128, 0);
-    rect(0, 420, 600, 200);
+    rect(0, 400, 600, 600);
 
     // Draw mud
     fill(88, 57, 39);
@@ -304,6 +315,12 @@ function draw() {
     cloud(c + 140, 90);
     cloud(c + 200, 300);
     cloud(c - 190, 250);
+
+    // Draw flowers
+
+    flower(f, r);
+    flower(f + 20, r + 20);
+    flower(f + 530, r - 10);
 
     // Movement for clouds
     c = c + 0.5;
@@ -363,11 +380,14 @@ function draw() {
       }
       noStroke();
       fill(0, 0, 0);
+      textSize(15);
+      text("Press spacekey to play again!", f - 110, r - 85);
+      fill(0, 0, 0);
       textSize(20);
-      text("Congratulations, YOU WON!", f - 140, r - 100);
+      text("Congratulations, YOU WON!", f - 140, r - 110);
       noStroke();
       fill(0, 128, 0);
-      rect(0, 350, 600, 300);
+      rect(0, 400, 600, 600);
       cloud(c - 170, 40);
       cloud(c + 20, 200);
       cloud(c + 100, 70);
@@ -376,8 +396,8 @@ function draw() {
       cloud(c - 190, 250);
       noStroke();
       fill(88, 57, 39);
-      ellipse(b, d + 140, 400, 70);
-      happypig(b + 30, d + 200, s * 1.2);
+      ellipse(b, d + 190, 400, 70);
+      happypig(b + 30, d + 250, s * 1.2);
 
       // Draw flowers
 
@@ -388,32 +408,29 @@ function draw() {
       //Start Game page
     }
   }
-  if (!gamestarted) {
-    console.log("hej");
+  if (!gameStarted) {
     background(135, 206, 235);
     noStroke();
     fill(0, 128, 0);
-    rect(0, 350, 600, 300);
+    rect(0, 400, 600, 600);
     cloud(c - 170, 40);
     cloud(c + 20, 200);
     cloud(c + 100, 70);
     cloud(c + 140, 90);
     cloud(c + 200, 300);
     cloud(c - 190, 250);
-    flower(f, r);
-    flower(f + 20, r + 20);
+    flower(f, r + 80);
+    flower(f + 20, r + 220);
     flower(f + 530, r - 10);
-    flower(f + 450, r + 10);
-    flower(f + 300, r - 15);
+    flower(f + 450, r + 160);
+    flower(f + 350, r + 200);
     flower(f + 100, r - 15);
-    flower(f + 190, r + 30);
+    flower(f + 190, r + 120);
     pig(width / 2, y + 320, Math.min(2, 2.8 - (mouseY / height) * 2));
     button(f - 100, r - 100, 200, 60);
   }
 
-  /*  if (speed >= 3) {
+  if (y > 580 && y < 500 && x > 380 && x < 180) {
     losepage();
-
-
-  } */
+  }
 }
