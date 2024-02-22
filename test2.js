@@ -13,7 +13,10 @@ let s = 1.0;
 let gameStarted = false; 
 let stars = [];
 let velocity = 0.5;
-const acceleretion = 0.1;
+const acceleration = 0.1;
+let softLanding = false;
+let gameEnd = false;
+let gameState = "start";
 let pigY = 100;
 
 //clouds in background function
@@ -300,7 +303,7 @@ function draw() {
             y -= 3;
             y -= velocity; 
             cloudfly(x - 130, y - 70); 
-        } else if (keyCode == RIGHT_ARROW) {
+        } else if (keyCode === RIGHT_ARROW) {
             x += 3;
             cloudfly(x - 130, y - 70); 
         } else if (keyCode == LEFT_ARROW) {
@@ -311,11 +314,18 @@ function draw() {
     } else if (gameStarted) {
 
         if (keyIsDown( UP_ARROW)) {
+            velocity = velocity - acceleration*3;
             y -= 3;
             velocity -= 0.5; 
             y -= velocity; 
             cloudfly(x - 130, y - 70);
         }
+        if (pigY >= 250){
+            softLanding = velocity < 2;
+            gameIsRunning = false;
+            gameEnd = true;
+            gameState = "end";
+             
 
         // Change background
         background(135,206,235);
@@ -366,37 +376,6 @@ function draw() {
             x -= 3;
             cloudfly(x - 130, y - 70); 
         }
-
-        //YOU WIN page
-        if (keyCode === 32 && if(y > 440 && x > z - 175 or z + 175)) {
-            background(202, 217, 232);
-            noStroke();
-             for (let star of stars) {
-                fill(star.color.levels[0], star.color.levels[1], star.color.levels[2], Math.abs(Math.sin(star.alpha)) * 255);
-                ellipse(star.x, star.y, 6, 5);
-                star.alpha = star.alpha + 0.05;
-                star.y += star.snow;
-                if (star.y > height) {
-                    star.y = 0;
-                }
-            }       noStroke();
-                    fill(0,0,0);
-                    textSize(20);
-                    text("Congratulations, YOU WON!", f - 140, r - 100);
-                    noStroke();
-                    fill(0, 128, 0);
-                    rect(0, 350, 600, 300);
-                    cloud(c - 170, 40);
-                    cloud(c + 20, 200);
-                    cloud(c +100, 70);
-                    cloud(c + 140, 90);
-                    cloud(c + 200, 300);
-                    cloud(c - 190, 250); 
-                    noStroke();
-                    fill(88, 57, 39);
-                    ellipse(b, d+140, 400, 70);
-                    happypig(b + 30, d + 200, s * 1.2);
-                    }
 
         // Draw flowers
         
