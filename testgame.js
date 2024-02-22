@@ -3,7 +3,6 @@ let y = 250;
 let z = 300;
 let a = 250;
 let c = 200;
-let l = 200;
 let f = 300;
 let r = 250;
 let b = 300;
@@ -131,10 +130,10 @@ function deadpig(b, d, s) {
 
   // dead eyes
   stroke(0, 0, 0);
-  line(b - 25 * s, d - 195 * s, b - 15 * s, d - 185 * s);
-  line(b - 25 * s, d - 185 * s, b - 15 * s, d - 195 * s);
-  line(b - 45 * s, d - 195 * s, b - 35 * s, d - 185 * s);
-  line(b - 45 * s, d - 185 * s, b - 35 * s, d - 195 * s);
+  line(x + 125, y - 295, x + 135, y - 265);
+  line(x + 125, y - 285, x + 135, y - 275);
+  line(x + 105, y - 295, x + 115, y - 265);
+  line(x + 105, y - 285, x + 125, y - 275);
 
   // legs and arms
   fill(255, 182, 193);
