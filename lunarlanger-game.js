@@ -231,22 +231,6 @@ function tryagainbutton(f, r, w, h) {
   text("Try Again", f + 35, r + 40);
 }
 
-function losepage() {
-  if (keyCode == 32) {
-    background(135, 206, 235);
-    noStroke();
-    fill(0, 128, 0);
-    rect(0, 400, 600, 600);
-    cloud(c - 170, 40);
-    cloud(c + 20, 200);
-    cloud(c + 100, 70);
-    cloud(c + 140, 90);
-    cloud(c + 200, 300);
-    cloud(c - 190, 250);
-    deadpig(b + 30, d + 300, s * 1.2);
-    tryagainbutton(f - 100, r - 100, 200, 60);
-  }
-}
 //CONFETTI FUNCTION
 for (let i = 0; i < 1000; i++) {
   const star = {
@@ -294,6 +278,7 @@ function draw() {
   ) {
     gameStarted = true;
   }
+
   if (gameStarted) {
     // Change background
     background(135, 206, 235);
@@ -357,57 +342,58 @@ function draw() {
     x += xDirection;
     y += yDirection;
     cloudfly(x - 130, y - 70);
-
-    //YOU WIN page
-    if (y < 580 && y > 500 && x < 380 && x > 180) {
-      console.log("win");
-      background(202, 217, 232);
-      noStroke();
-      speed = 0;
-      for (let star of stars) {
-        fill(
-          star.color.levels[0],
-          star.color.levels[1],
-          star.color.levels[2],
-          Math.abs(Math.sin(star.alpha)) * 255
-        );
-        ellipse(star.x, star.y, 6, 5);
-        star.alpha = star.alpha + 0.05;
-        star.y += star.snow;
-        if (star.y > height) {
-          star.y = 0;
-        }
-      }
-      noStroke();
-      fill(0, 0, 0);
-      textSize(15);
-      text("Press spacekey to play again!", f - 110, r - 85);
-      fill(0, 0, 0);
-      textSize(20);
-      text("Congratulations, YOU WON!", f - 140, r - 110);
-      noStroke();
-      fill(0, 128, 0);
-      rect(0, 400, 600, 600);
-      cloud(c - 170, 40);
-      cloud(c + 20, 200);
-      cloud(c + 100, 70);
-      cloud(c + 140, 90);
-      cloud(c + 200, 300);
-      cloud(c - 190, 250);
-      noStroke();
-      fill(88, 57, 39);
-      ellipse(b, d + 190, 400, 70);
-      happypig(b + 30, d + 250, s * 1.2);
-
-      // Draw flowers
-
-      flower(f, r);
-      flower(f + 20, r + 20);
-      flower(f + 530, r - 10);
-
-      //Start Game page
-    }
   }
+
+  //YOU WIN page
+  if (y < 580 && y > 500 && x < 380 && x > 180 && speed < 3) {
+    console.log("win");
+    background(202, 217, 232);
+    noStroke();
+    speed = 0;
+    for (let star of stars) {
+      fill(
+        star.color.levels[0],
+        star.color.levels[1],
+        star.color.levels[2],
+        Math.abs(Math.sin(star.alpha)) * 255
+      );
+      ellipse(star.x, star.y, 6, 5);
+      star.alpha = star.alpha + 0.05;
+      star.y += star.snow;
+      if (star.y > height) {
+        star.y = 0;
+      }
+    }
+    noStroke();
+    fill(0, 0, 0);
+    textSize(15);
+    text("Press spacekey to play again!", f - 110, r - 85);
+    fill(0, 0, 0);
+    textSize(20);
+    text("Congratulations, YOU WON!", f - 140, r - 110);
+    noStroke();
+    fill(0, 128, 0);
+    rect(0, 400, 600, 600);
+    cloud(c - 170, 40);
+    cloud(c + 20, 200);
+    cloud(c + 100, 70);
+    cloud(c + 140, 90);
+    cloud(c + 200, 300);
+    cloud(c - 190, 250);
+    noStroke();
+    fill(88, 57, 39);
+    ellipse(b, d + 190, 400, 70);
+    happypig(b + 30, d + 250, s * 1.2);
+
+    // Draw flowers
+
+    flower(f, r);
+    flower(f + 20, r + 20);
+    flower(f + 530, r - 10);
+
+    //Start Game page
+  }
+
   if (!gameStarted) {
     background(135, 206, 235);
     noStroke();
@@ -428,9 +414,23 @@ function draw() {
     flower(f + 190, r + 120);
     pig(width / 2, y + 320, Math.min(2, 2.8 - (mouseY / height) * 2));
     button(f - 100, r - 100, 200, 60);
+    fill(255, 0, 0);
+    textSize(50);
+    text("PIG LANDER", f - 160, r - 120);
   }
 
   if (y > 580 && y < 500 && x > 380 && x < 180) {
-    losepage();
+    background(135, 206, 235);
+    noStroke();
+    fill(0, 128, 0);
+    rect(0, 400, 600, 600);
+    cloud(c - 170, 40);
+    cloud(c + 20, 200);
+    cloud(c + 100, 70);
+    cloud(c + 140, 90);
+    cloud(c + 200, 300);
+    cloud(c - 190, 250);
+    deadpig(b + 30, d + 300, s * 1.2);
+    tryagainbutton(f - 100, r - 100, 200, 60);
   }
 }
