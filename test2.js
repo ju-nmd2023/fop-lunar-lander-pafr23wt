@@ -1,15 +1,53 @@
 let gameIsRunning = false;
 let pigY = 150;
+let cloudflyY = 150;
 let velocity = 0.5;
 const acceleration = 0.1;
 let softLanding = false;
 let gameEnd = false;
 let stars = [];
+let f = 300;
+let r = 250;
+let c = 200;
+let l = 200;
+x = 0;
+y = 0;
+
+//clouds in background function
+function cloud(c, l) {
+  fill(255, 255, 255, 100);
+  stroke(255, 255, 255, 10);
+  ellipse(c + 100, l + 10, 70, 60);
+  ellipse(c + 70, l + 10, 60, 40);
+  ellipse(c + 140, l + 15, 50, 40);
+}
+
+//cloud under pig function
+function cloudfly(x, y) {
+  fill(255, 255, 255, 250);
+  stroke(0, 0, 0);
+  strokeWeight(0.3);
+  ellipse(x + 100, y + 20, 70, 60);
+  ellipse(x + 70, y + 20, 60, 40);
+  ellipse(x + 140, y + 25, 50, 40);
+}
 
 function scenery() {
   push();
   fill(0, 0, 20);
   background(135, 206, 235);
+  noStroke();
+  cloud(c - 170, 40);
+  cloud(c + 20, 200);
+  cloud(c + 100, 70);
+  cloud(c + 140, 90);
+  cloud(c + 200, 300);
+  cloud(c - 190, 250);
+  //Movement for clouds
+  c = c + 0.5;
+  if (c > 750) {
+    c = -250;
+  }
   pop();
 }
 
@@ -21,6 +59,9 @@ function grass() {
   rect(0, 600, width, height);
   fill(88, 57, 39);
   ellipse(270, 620, 210, 40);
+  flower(f, r + 160);
+  flower(f + 50, r + 180);
+  flower(f + 530, r + 170);
   pop();
 }
 
@@ -84,14 +125,10 @@ function pig(x, y) {
     // 'X' shapes for eyes when the game is lost
     stroke(255, 0, 0);
     strokeWeight(3);
-
-    line(x - 60, y - 20, x - 110, y);
-    line(x - 60, y, x - 110, y - 20);
-
-    line(x - 30, y - 20, x - 70, y);
-    line(x - 20, y, x - 70, y - 20);
-
-    noStroke();
+    line(x + 75, y - 150, x + 85, y - 135);
+    line(x + 75, y - 135, x + 85, y - 150);
+    line(x + 55, y - 150, x + 65, y - 135);
+    line(x + 55, y - 135, x + 65, y - 150);
   }
 
   // Mouth
@@ -119,7 +156,8 @@ function pig(x, y) {
 }
 
 function resetGame() {
-  pigY = 150; // Adjusted starting position
+  pigY = 150;
+  cloudflyY = 240;
   gameIsRunning = true;
   gameEnd = false;
   normalEyesVisible = true;
@@ -136,26 +174,48 @@ function startScreen() {
   grass();
   pig(100, 100, 2);
   textSize(50);
-  fill(255);
+  fill(255, 0, 0);
   text("PIG LANDER", 130, 250);
   textSize(30);
   fill(255);
   text("Click to start", 195, 290);
 }
 
+//flowers on grass function
+function flower(x, y) {
+  //steam
+  noStroke();
+  fill(0, 80, 0);
+  rect(x - 280, y + 200, 5, 30);
+
+  // Flower
+  fill(255, 0, 0);
+
+  // leafs
+  ellipse(x - 285, y + 190, 15, 15);
+  ellipse(x - 270, y + 190, 15, 15);
+  ellipse(x - 285, y + 205, 15, 15);
+  ellipse(x - 270, y + 205, 15, 15);
+
+  // Center
+  fill(255, 255, 0);
+  ellipse(x - 278, y + 198, 12, 12);
+}
+
 function draw() {
   scenery();
   grass();
   pig(100, pigY, 2);
+  cloudfly(170, cloudflyY, 2);
 
   if (!gameIsRunning && !gameEnd) {
     startScreen();
   } else if (gameIsRunning) {
-    pigY = pigY + velocity;
-    velocity = velocity + acceleration;
-
+    pigY += velocity;
+    velocity += acceleration; // Update pig's velocity
+    cloudflyY += velocity * 2;
     if (keyIsDown(32)) {
-      velocity = velocity - acceleration * 3;
+      velocity = velocity - acceleration * 4;
     }
   }
 
@@ -190,6 +250,7 @@ function draw() {
       text("YOU LOSS!", 140, 300);
       textSize(30);
       text("Click to restart", 170, 340);
+      normalEyesVisible = false;
     }
   }
 }
