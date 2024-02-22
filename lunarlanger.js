@@ -226,7 +226,7 @@ function draw() {
 
     if (softLanding) {
       textSize(50);
-      fill(0, 255, 0);
+      fill(0, 128, 0);
       text("YOU WON", 160, 300);
       textSize(30);
       text("Click to try again", 175, 340);
