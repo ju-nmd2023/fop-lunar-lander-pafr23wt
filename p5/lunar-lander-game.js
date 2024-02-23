@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(570, 700);
+  let canvas = createCanvas(600, 700);
   frameRate(30);
   color = (x, x, x);
 }
