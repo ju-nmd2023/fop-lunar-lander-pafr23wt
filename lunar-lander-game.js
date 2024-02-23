@@ -1,8 +1,18 @@
 function setup() {
   createCanvas(570, 700);
-  let canvas = createCanvas(600, 700);
+  let canvas = createCanvas(570, 750);
   frameRate(30);
   color = (x, x, x);
+}
+
+// sketch.js
+
+function setup() {
+  var cnv = createCanvas(570, 750);
+  var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
+  cnv.position(x, y);
+  background(255, 0, 200);
 }
 
 let gameIsRunning = false;
