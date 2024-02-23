@@ -1,5 +1,7 @@
 function setup() {
   createCanvas(570, 700);
+  frameRate(30);
+  color = (x, x, x);
 }
 
 let gameIsRunning = false;
@@ -78,23 +80,9 @@ for (let i = 0; i < 1000; i++) {
     y: Math.floor(Math.random() * 700),
     snow: Math.random() * 1,
     alpha: Math.random(),
-    color: getRandomColor(),
   };
   stars.push(star);
 }
-//chat GPT
-function getRandomColor() {
-  const randomValue = Math.random();
-  if (randomValue < 0.33) {
-    return color(0, 255, 0);
-  } else if (randomValue < 0.66) {
-    return color(255, 255, 0);
-  } else {
-    return color(255, 105, 180);
-  }
-}
-//chat GPT
-
 // Pig
 
 function pig(x, y) {
@@ -215,7 +203,7 @@ function draw() {
     startScreen();
   } else if (gameIsRunning) {
     pigY += velocity;
-    velocity += acceleration; // Update pig's velocity
+    velocity += acceleration;
     cloudflyY += velocity * 2;
     if (keyIsDown(32)) {
       velocity = velocity - acceleration * 4;
@@ -234,10 +222,18 @@ function draw() {
       textSize(30);
       text("Click to try again", 175, 340);
       for (let star of stars) {
+        const randomValue = Math.random();
+        if (randomValue < 0.33) {
+          fill(255, 204, 204);
+        } else if (randomValue < 0.66) {
+          fill(204, 255, 204);
+        } else {
+          fill(255, 255, 204);
+        }
         fill(
-          star.color.levels[0],
-          star.color.levels[1],
-          star.color.levels[2],
+          randomValue < 0.33 ? 255 : 0,
+          randomValue >= 0.33 && randomValue < 0.66 ? 255 : 0,
+          randomValue >= 0.66 ? 255 : 0,
           Math.abs(Math.sin(star.alpha)) * 255
         );
         ellipse(star.x, star.y, 6, 5);
